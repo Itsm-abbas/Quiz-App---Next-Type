@@ -1,16 +1,20 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import ContentLoader from "react-content-loader";
 import { QuizContext } from "../context/category";
 
 const Loader = () => {
   const { category, amount, difficulty } = useContext(QuizContext);
+  const [innerWidth, setInnerWidth] = useState(false);
   const router = useRouter();
   useEffect(() => {
     router.replace(
       `startQuiz?category=${category}&amount=${amount}&difficulty=${difficulty.toLowerCase()}`
     );
-  });
+    if (window.innerWidth > 750) {
+      setInnerWidth(true);
+    }
+  }, [amount, category, difficulty, router]);
   return (
     <div
       style={{
@@ -20,7 +24,7 @@ const Loader = () => {
         transform: "translate(50%,-50%)",
       }}
     >
-      {window.innerWidth > 750 ? (
+      {innerWidth ? (
         <ContentLoader
           speed={2}
           width={600}
