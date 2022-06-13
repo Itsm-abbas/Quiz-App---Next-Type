@@ -9,9 +9,27 @@ const Home = () => {
     "Geography",
     "Politics",
     "History",
+    "Books",
+    "Film",
+    "Music",
+    "Musicals and Theatres",
+    "Television",
+    "Video games",
+    "Board games",
+    "Science and Nature",
+    "Computers",
+    "Mathematics",
+    "Mythology",
+    "Celebrities",
+    "Animals",
+    "Vehicles",
+    "Art",
+    "Comics",
+    "Gadgets",
+    "Cartoon and Animations",
   ];
   const Difficulty = ["Easy", "Medium", "Hard"];
-  const No_of_Questions = [10, 20, 30, 40];
+  const No_of_Questions = [5, 10, 15, 20, 25, 30];
   return (
     <>
       <Navbar />

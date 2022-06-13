@@ -13,6 +13,40 @@ export default function ListBox({ data, label }: Props) {
   if (selected === "General Knowledge") {
     setCategory(9);
   }
+
+  if (selected === "Books") {
+    setCategory(10);
+  }
+  if (selected === "Film") {
+    setCategory(11);
+  }
+  if (selected === "Music") {
+    setCategory(12);
+  }
+  if (selected === "Musicals and Theatres") {
+    setCategory(13);
+  }
+  if (selected === "Television") {
+    setCategory(14);
+  }
+  if (selected === "Video games") {
+    setCategory(15);
+  }
+  if (selected === "Board games") {
+    setCategory(16);
+  }
+  if (selected === "Science and Nature") {
+    setCategory(17);
+  }
+  if (selected === "Computers") {
+    setCategory(18);
+  }
+  if (selected === "Mathematics") {
+    setCategory(19);
+  }
+  if (selected === "Mythology") {
+    setCategory(20);
+  }
   if (selected === "Sports") {
     setCategory(21);
   }
@@ -24,6 +58,27 @@ export default function ListBox({ data, label }: Props) {
   }
   if (selected === "Politics") {
     setCategory(24);
+  }
+  if (selected === "Art") {
+    setCategory(25);
+  }
+  if (selected === "Celebrities") {
+    setCategory(26);
+  }
+  if (selected === "Animals") {
+    setCategory(27);
+  }
+  if (selected === "Vehicles") {
+    setCategory(28);
+  }
+  if (selected === "Comics") {
+    setCategory(29);
+  }
+  if (selected === "Gadgets") {
+    setCategory(30);
+  }
+  if (selected === "Cartoons and Animations") {
+    setCategory(31);
   }
   useEffect(() => {
     if (label === "Select Category:") {
@@ -55,7 +110,7 @@ export default function ListBox({ data, label }: Props) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="absolute z-50 w-11/12 md:w-3/4 py-1 text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+              <Listbox.Options className="absolute z-50 w-11/12 md:w-3/4 py-1 text-base bg-white rounded-md shadow-lg h-auto ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                 {data.map((value, personIdx) => (
                   <Listbox.Option
                     key={personIdx}
