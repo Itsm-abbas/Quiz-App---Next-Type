@@ -71,7 +71,7 @@ const StartQuiz = ({ data, status }: Props) => {
             {single.category} Quiz
           </h1>
           {value < data.length - 1 && (
-            <div className="flex flex-col justify-start items-start md:w-11/12 lg:w-3/4 m-auto p-12 px-16 shadow-md rounded-md bg-white">
+            <div className="flex flex-col justify-start items-start md:w-11/12 lg:w-3/4 m-auto py-12 px-6 md:px-16 shadow-md rounded-md bg-white">
               <h1 className="text-gray-800 md:text-xl font-bold mb-7">
                 {newQuestion}
               </h1>
