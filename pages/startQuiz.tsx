@@ -2,12 +2,9 @@ import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 type Props = {
   data: any[];
-  status: Number;
 };
 
-const StartQuiz = ({ data, status }: Props) => {
-  console.log(status);
-
+const StartQuiz = ({ data }: Props) => {
   const [value, setValue] = useState<number>(0);
   const [single, setSingle] = useState(data[0]);
   const [score, setScore] = useState(1);
@@ -38,22 +35,33 @@ const StartQuiz = ({ data, status }: Props) => {
     setClickValue(e.target.innerText);
     setClick(true);
   };
+
+  // Save to local storage
+  const StoreBtn = () => {
+    // Save Score
+    let GetScore = JSON.parse(localStorage.getItem("score")!);
+    if (GetScore === null) GetScore = [];
+    GetScore.push(score + "/" + data.length);
+    localStorage.setItem("score", JSON.stringify(GetScore));
+    // Save Subject
+    let GetSubject = JSON.parse(localStorage.getItem("subject")!);
+    if (GetSubject === null) GetSubject = [];
+    GetSubject.push(single.category);
+    localStorage.setItem("subject", JSON.stringify(GetSubject));
+    //Save Deficulty
+    let GetDifficulty = JSON.parse(localStorage.getItem("difficulty")!);
+    if (GetDifficulty === null) GetDifficulty = [];
+    GetDifficulty.push(single.difficulty);
+    localStorage.setItem("difficulty", JSON.stringify(GetDifficulty));
+  };
   useEffect(() => {
     if (clickValue === single?.correct_answer) {
       setScore((prev) => prev + 1);
-      // refs.current[index].current.classList.add("bg-green-600");
-      // refs.current[index].current.classList.add("text-white");
     }
     if (click) {
       refs.current[index].current.classList.add("bg-gray-500");
       refs.current[index].current.classList.add("text-white");
     }
-    // single?.incorrect_answers.map((item: any) => {
-    //   if (clickValue === item) {
-    //     refs.current[index].current.classList.add("bg-red-600");
-    //     refs.current[index].current.classList.add("text-white");
-    //   }
-    // });
   }, [
     click,
     clickValue,
@@ -76,8 +84,6 @@ const StartQuiz = ({ data, status }: Props) => {
                 {newQuestion}
               </h1>
               {single.answers.map((answer: string, index: number) => {
-                console.log(answer[0]);
-
                 return (
                   <div
                     ref={refs.current[index]}
@@ -114,7 +120,10 @@ const StartQuiz = ({ data, status }: Props) => {
                 <div className="p-2 w-full">
                   {(score / data.length) * 100 >= 50 ? (
                     <Link href={"/"} passHref>
-                      <button className="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-400 rounded text-lg">
+                      <button
+                        onClick={StoreBtn}
+                        className="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-400 rounded text-lg"
+                      >
                         Congratulations your score is{" "}
                         {(score / data.length) * 100}% <br />
                         Click me to go back
@@ -122,7 +131,10 @@ const StartQuiz = ({ data, status }: Props) => {
                     </Link>
                   ) : (
                     <Link href={"/"} passHref>
-                      <button className="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-400 rounded text-lg">
+                      <button
+                        onClick={StoreBtn}
+                        className="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-400 rounded text-lg"
+                      >
                         Your score is below 50% but you can try again. <br />
                         Click me to go back
                       </button>

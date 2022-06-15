@@ -6,8 +6,8 @@ export const QuizContext = createContext<{
   amount: number;
   setDifficulty: React.Dispatch<React.SetStateAction<string>>;
   difficulty: string;
-  setValue: React.Dispatch<React.SetStateAction<number>>;
-  value: number;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  name: string;
 }>(
   //@ts-ignore
   null
@@ -19,7 +19,8 @@ const QuizContextProvider = ({ children }: Props) => {
   const [category, setCategory] = useState<number>(9);
   const [amount, setAmount] = useState<number>(10);
   const [difficulty, setDifficulty] = useState<string>("easy");
-  const [value, setValue] = useState<number>(0);
+  const [name, setName] = useState<string>("");
+
   return (
     <QuizContext.Provider
       value={{
@@ -29,8 +30,8 @@ const QuizContextProvider = ({ children }: Props) => {
         amount,
         setDifficulty,
         difficulty,
-        setValue,
-        value,
+        setName,
+        name,
       }}
     >
       {children}
